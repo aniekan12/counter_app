@@ -7,6 +7,8 @@ import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
+    var counter = 0;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -15,17 +17,26 @@ class MainActivity : AppCompatActivity() {
         val decreaseButton = findViewById<FloatingActionButton>(R.id.decreaseButton)
         val counterText = findViewById<TextView>(R.id.countText)
 
-        var counter = 0;
 
         increaseButton.setOnClickListener{
-           counter = counterText.text.toString().toInt()
-            counter.inc()
+           counterText.text = increaseCounter().toString()
 
         }
 
         decreaseButton.setOnClickListener{
-            counter = counterText.text.toString().toInt()
-            counter.dec()
+           counterText.text = decreaseCounter().toString()
         }
     }
+
+    private fun increaseCounter() : Int{
+        counter++
+        return counter;
+    }
+
+   private fun decreaseCounter():Int{
+        counter--
+        return counter
+    }
+
+
 }
